@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="/css/blogcss.css" />
+    <%- include('../views/partials/links'); %>  
+   
+</head>
+
+<body>
+
+                <!-- header part -->
+
+<nav class="navbar navbar-expand-lg bg-primary navbar-light">
+    <div class="container mt-1">
+        <h2 class="text-white">ROOMLY</h2>
+        <button class="navbar-toggler btn btn-secondary" type="button" data-toggle="collapse"
+            data-target="#collapsenavbar">
+            <span class="navbar-toggler-icon "></span>
+        </button>
+        <div class="collapse navbar-collapse text-center" id="collapsenavbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item px-2">
+                    <a href="/" class="nav-link text-white"> HOME </a>
+                </li>
+                <li class="nav-item px-2">
+                    <a href="/room" class="nav-link text-white"> ROOM </a>
+                </li>
+                <li class="nav-item px-2">
+                    <a href="/mybooking" class="nav-link text-white"> MY BOOKING </a>
+                </li>
+                <li class="nav-item px-2">
+                    <a href="/alladmin" class="nav-link text-white"> ADMINS </a>
+                </li>
+                <li class="nav-item px-2">
+                    <a href="/logout" class="nav-link text-white"> LOGOUT </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+                    <!-- page content -->
+
+          <div class="container mt-5">
+            <h2 class="text-center">Register New Room Here</h2>
+            <div class="d-flex justify-content-center">
+                <form class="mt-3 col-md-6" id="addbus" action="/bus" method="post">
+                    <div class="form-group">
+                        <label for="roomname">Room Name</label>
+                        <input type="text" class="form-control" id="roomname" name="roomname" placeholder="Room Name" required>
+                    </div>
+
+                  <div class="form-group"></div>
+                  <input type="submit" class="btn btn-danger btn-info mt-2" value="ADD">
+                  <button class="btn btn-danger mt-2 ml-2" ><a href="/bus" class="text-light"> CANCEL </a></button>
+
+                    </div>
+                </form>
+            </div>
+
+
+    <%- include('../views/partials/footer'); %>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    
+</body>
+
+</html>

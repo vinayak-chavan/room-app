@@ -1,0 +1,83 @@
+<html>
+
+<head>
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/blogcss.css" />
+    <%- include('../views/partials/links'); %>  
+   
+</head>
+
+<body>
+
+                <!-- header part -->
+
+<nav class="navbar navbar-expand-lg bg-primary navbar-light">
+    <div class="container mt-1">
+        <h2 class="text-white">ROOMLY</h2>
+        <button class="navbar-toggler btn btn-secondary" type="button" data-toggle="collapse"
+            data-target="#collapsenavbar">
+            <span class="navbar-toggler-icon "></span>
+        </button>
+        <div class="collapse navbar-collapse text-center" id="collapsenavbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item px-2">
+                    <a href="/" class="nav-link text-white"> HOME </a>
+                </li>
+                <li class="nav-item px-2">
+                    <a href="/room" class="nav-link text-white"> ROOM </a>
+                </li>
+                <li class="nav-item px-2">
+                    <a href="/mybooking" class="nav-link text-white"> MY BOOKING </a>
+                </li>
+                <li class="nav-item px-2">
+                    <a href="/alladmin" class="nav-link text-white"> ADMINS </a>
+                </li>
+                <li class="nav-item px-2">
+                    <a href="/logout" class="nav-link text-white"> LOGOUT </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+                    <!-- page content -->
+
+        <section class="pt-3 justify-content-center position-relative ">
+           
+          <div class="container">
+              
+                <div class="row justify-content-center">
+                    <% users.forEach(user=> { %> 
+                        <div class="card mt-4">
+                            <div class="card-body">
+                                <p class="card-text"><i class="fas fa-user" style="font-size:18px; color:red; padding-right: 8px;"></i><%= user.username %></p>
+                                <p class="card-text"><i class="fas fa-phone-alt" style="font-size:18px; color:red; padding-right: 8px;"></i><%= user.phoneno %></p>
+                                <p class="card-text"><i class="fas fa-envelope" style="font-size:18px; color:red; padding-right: 8px;"></i><%= user.emailID %></p>
+                                
+                              </div>
+                          </div>
+                    <% }) %>
+                  </div>
+                    
+                </div>
+                
+            </div>
+            
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+    <%- include('../views/partials/footer'); %>
+
+</body>
+
+</html>

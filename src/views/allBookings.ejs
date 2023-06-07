@@ -1,0 +1,84 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="/css/blogcss.css" />
+
+  <%- include('../views/partials/links'); %>
+
+</head>
+
+<body>
+
+  <!-- header part -->
+
+  <nav class="navbar navbar-expand-lg bg-primary navbar-light">
+    <div class="container mt-1">
+      <h2 class="text-white">ROOMLY</h2>
+      <button class="navbar-toggler btn btn-secondary" type="button" data-toggle="collapse"
+        data-target="#collapsenavbar">
+        <span class="navbar-toggler-icon "></span>
+      </button>
+
+      <div class="collapse navbar-collapse text-center" id="collapsenavbar">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item px-2">
+            <a href="/login" class="nav-link text-white"> LOGIN </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- page content -->
+
+  <% function formatDate(dateObject) { let d=new Date(dateObject); let day=d.getDate(); let month=d.getMonth() + 1; let
+    year=d.getFullYear(); if (day < 10) { day="0" + day; } if (month < 10) { month="0" + month; } let date=year + "-" +
+    month + "-" + day; return date; };%>
+
+<div class="container mt-5">
+  <div class="d-flex justify-content-center">
+    <form class="mt-1 col-md-6" id="addbus" action="/bydate" method="post">
+
+      <div class="form-group">
+        <label for="Date">Date</label>
+        <input type="date" class="form-control" name="date">
+      </div>
+
+      <input type="submit" class="btn btn-primary btn-info mt-2" value="Search">
+      
+      </form>
+  </div>
+</div>
+
+    <div class="main-wrapper mt-0">
+      <div class="container main-container">
+      <div class="d-flex justify-content-center mt-4">
+        <h4>Today's Schedule</h4>
+      </div>
+          <table class="table table-striped mt-4">
+            <thead>
+              <tr>
+                <th scope="col">Room</th>
+                <th scope="col">User Name</th>
+                <th scope="col">Time Slot</th>
+                <th scope="col">Reason</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% bookings.forEach(booking=> { %>
+              <tr>
+                <td><%= booking.roomId.roomname %></td>
+                <td><%= booking.userId.username %></td>
+                <td><%= booking.timeSlot %></td>
+                <td><%= booking.reason %></td>
+              </tr>
+                <% }) %>
+            </tbody>
+          </table>
+    </div>
+    </div>
+
+
+</body>
+
+</html>

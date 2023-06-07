@@ -1,0 +1,106 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="/css/blogcss.css" />
+    
+    <%- include('../views/partials/links'); %>  
+   
+</head>
+
+<body>
+
+                <!-- header part -->
+
+<nav class="navbar navbar-expand-lg bg-primary navbar-light">
+  <div class="container mt-1">
+    <h2 class="text-white">ROOMLY</h2>
+    <button class="navbar-toggler btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapsenavbar">
+      <span class="navbar-toggler-icon "></span>
+    </button>
+    <div class="collapse navbar-collapse text-center" id="collapsenavbar">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item px-2">
+          <a href="/" class="nav-link text-white"> HOME </a>
+        </li>
+        <li class="nav-item px-2">
+          <a href="/room" class="nav-link text-white"> ROOM </a>
+        </li>
+        <li class="nav-item px-2">
+          <a href="/mybooking" class="nav-link text-white"> MY BOOKING </a>
+        </li>
+        <li class="nav-item px-2">
+          <a href="/alladmin" class="nav-link text-white"> ADMINS </a>
+        </li>
+        <li class="nav-item px-2">
+          <a href="/logout" class="nav-link text-white"> LOGOUT </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+                    <!-- page content -->
+
+    <% function formatDate(dateObject) { 
+      let d=new Date(dateObject); 
+      let day=d.getDate(); 
+      let month=d.getMonth() + 1; 
+      let year=d.getFullYear();
+      if (day < 10) { 
+        day="0" + day; 
+      } 
+      if (month < 10) { 
+        month="0" + month; 
+      }
+      let date=year + "-" + month + "-" + day; return date; 
+    };%>
+
+    <% if(message == '') {%>
+    <div class="main-wrapper mt-0">
+      <div class="container main-container">
+        <% trips.forEach(trip=> { %>
+        <div class="row main-row mt-4">
+          <div class="col-12 align-center">
+            <div class="row p-3">
+              <div class="col-5 align-middle"> 
+
+                <h5> <%= formatDate(trip.travelDate) %> </h5>            
+                Price : <%= trip.fareAmount %> <br>
+                Available Seats : <%= trip.availableSeats.length %>
+              </div>
+
+              <div class="col-5 align-middle mt-4"> 
+              <h6><%= trip.startingPoint %> - <%= trip.destinationPoint %></h6>
+                <%= trip.departureTime %> -  <%= trip.reachTime %> <br>
+              </div>
+
+              <div class="col-2 mt-3">
+                
+                <a href="/booking/<%= trip._id %>" class="btn btn-danger btn-block" >Add Booking</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+  <% } else { %>
+  <div class="d-flex justify-content-center mainDiv">
+    <h4><%= message %></h4></br/>
+  </div>
+  <div class="d-flex justify-content-center mt-2">
+
+  
+  <a href="/search" class="btn btn-danger">BACK</a>
+  </div>  
+  <% } %>
+    <div>
+    <%- include('../views/partials/footer'); %>
+      </div>
+
+      
+</body>
+
+</html>

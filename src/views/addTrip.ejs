@@ -1,0 +1,144 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="/css/blogcss.css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <%- include('../views/partials/links'); %>  
+   
+</head>
+
+<body>
+
+                <!-- header part -->
+
+  <nav class="navbar navbar-expand-lg bg-danger navbar-light">
+        <div class="container mt-1">
+            <h2 class="text-white">Red<b>BUS</b></h2>
+            <button class="navbar-toggler btn btn-secondary" type="button" data-toggle="collapse"
+                data-target="#collapsenavbar">
+                <span class="navbar-toggler-icon "></span>
+            </button>
+
+            <div class="collapse navbar-collapse text-center" id="collapsenavbar">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item px-2">
+                        <a href="/bus" class="nav-link text-white"> HOME </a>
+                    </li>
+                    <li class="nav-item px-2">
+                        <a href="/logout" class="nav-link text-white"> LOGOUT </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+                    <!-- page content -->
+<div class="container mt-4">
+   
+        <div class="d-flex justify-content-center">
+            <form class="mt-3 col-md-6" id="addtrip" action="/trip" method="post">
+                <div class="form-group">
+                    <div class="container ">
+                        <div class="row mx-md-n2">
+                            <div class="col px-md-2">
+                                <label for="startingPoint">From</label>
+                                <input type="text" class="form-control" id="startingPoint" name="startingPoint" placeholder="From">
+                            </div>
+                            <div class="col px-2">
+                                <label for="destinationPoint">Destination</label>
+                                <input type="text" class="form-control" id="destinationPoint" name="destinationPoint" placeholder="Destination">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="container ">
+                        <div class="row mx-md-n2">
+                            <div class="col px-md-2">
+                                <label for="departureTime">Departure Time</label>
+                                <input type="time" class="form-control" id="departureTime" name="departureTime">
+                            </div>
+                            <div class="col px-2">
+                                <label for="reachTime">Reach Time</label>
+                                <input type="time" class="form-control" id="reachTime" name="reachTime">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" id="intermediate">
+                     <div class="container ">
+                        <label for="id_label_multiple">Intermediate Stops</label>
+                         <select class="js-example-basic-multiple form-control" name="intermediate" id="id_label_multiple" multiple="multiple">
+                            <option class="element" value="Raipur">Raipur</option>
+                            <option class="element" value="Bilaspur">Bilaspur</option>
+                            <option class="element" value="Durg">Durg</option>
+                            <option class="element" value="Ambikapur">Ambikapur</option>
+                            <option class="element" value="Jagdalpur">Jagdalpur</option>
+                            <option class="element" value="Nagpur">Nagpur</option>
+                            <option class="element" value="Bhopal">Bhopal</option>
+                            <option class="element" value="Indore">Indore</option>
+                            <option class="element" value="Lucknow">Lucknow</option>
+                            <option class="element" value="Kanker">Kanker</option>
+                            <option class="element" value="Keshkal">Keshkal</option>
+                            <option class="element" value="Rajnangaon">Rajnangaon</option>
+                            <option class="element" value="Dongargarh">Dongargarh</option>
+                            <option class="element" value="Korba">Korba</option>
+                            <option class="element" value="Sirpur">Sirpur</option>
+                            <option class="element" value="Bastar">Bastar</option>
+                            <option class="element" value="Abhanpur">Abhanpur</option>
+                            <option class="element" value="Narayanpur">Narayanpur</option>
+                            <option class="element" value="Gariyaband">Gariyaband</option>
+                            <option class="element" value="Korea">Korea</option>
+                            <option class="element" value="Mahasamund">Mahasamund</option>
+                            <option class="element" value="Dhamtari">Dhamtari</option>
+                        </select>
+                    </div>
+                 </div>
+                <div class="form-group">
+                    <div class="container ">
+                        <label for="travelDate">Travel Date</label>
+                        <input type="date" class="form-control" id="travelDate" name="travelDate" placeholder="Travel Date">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="container ">
+                        <label for="fareAmount">Fare Amount</label>
+                        <input type="text" class="form-control" id="fareAmount" name="fareAmount" placeholder="Fair Amount">
+                    </div>
+                </div>
+                    
+                <div class="form-group">
+                    <div class="container ">
+                        <input type="submit" class="btn btn-danger btn-info mt-2" value="ADD">
+                        <button class="btn btn-danger mt-2 ml-2" ><a href="/bus" class="text-light"> CANCEL </a></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+</div>
+
+    <%- include('../views/partials/footer'); %>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    
+    <script>
+     $(".js-example-basic-multiple").select2({
+      width: 'resolve', // need to override the changed default
+      theme: 'classic'
+    });
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+
+    today = yyyy + '-' + mm + '-' + dd;
+    $('#travelDate').attr('min',today);
+    </script>
+
+</body>
+
+</html>

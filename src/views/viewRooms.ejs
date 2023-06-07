@@ -1,0 +1,95 @@
+<html>
+
+<head>
+  <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/css/blogcss.css" />
+  <%- include('../views/partials/links'); %>
+      <script>
+        function disableSubmitButton() {
+          alert('Sorry!! Time slot is allready booked.');
+        }
+      </script>
+</head>
+
+<body>
+
+  <!-- header part -->
+
+<nav class="navbar navbar-expand-lg bg-primary navbar-light">
+  <div class="container mt-1">
+    <h2 class="text-white">ROOMLY</h2>
+    <button class="navbar-toggler btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapsenavbar">
+      <span class="navbar-toggler-icon "></span>
+    </button>
+    <div class="collapse navbar-collapse text-center" id="collapsenavbar">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item px-2">
+          <a href="/" class="nav-link text-white"> HOME </a>
+        </li>
+        <li class="nav-item px-2">
+          <a href="/room" class="nav-link text-white"> ROOM </a>
+        </li>
+        <li class="nav-item px-2">
+          <a href="/mybooking" class="nav-link text-white"> MY BOOKING </a>
+        </li>
+        <li class="nav-item px-2">
+          <a href="/alladmin" class="nav-link text-white"> ADMINS </a>
+        </li>
+        <li class="nav-item px-2">
+          <a href="/logout" class="nav-link text-white"> LOGOUT </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+        <nav class="navbar navbar-expand-lg bg-white mt-3">
+          <div class="container">
+        
+            <div class="collapse navbar-collapse text-center" id="collapsenavbar">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item px-4">
+                  <button type="button" class="btn btn-secondary p-0"><a href="/addroom" class="nav-link text-white"> Add
+                      Room </a></button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+  <!-- page content -->
+
+  <section class="pt-3 justify-content-center position-relative ">
+
+    <div class="container">
+      <% if(message != ' ') { %> <script> disableSubmitButton(); </script> <% } %>
+      <%= message %>
+      <div class="row justify-content-center">
+        <% buses.forEach(bus=> { %>
+          <div class="card mt-4">
+            <div class="card-body">
+              <p class="card-text h5 mb-4">
+                <i class="fa fa-home" style="font-size:22px; color:#007bff; padding-right: 8px;"></i>
+                <%= bus.roomname %>
+              </p>
+             
+              <div class="float-right">
+                <a href="/bookingpage/<%= bus._id %>" class="btn btn-primary ml-3">BOOK</a>
+                <a href="/room/<%= bus._id %>" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"
+                    style="font-size:22px; color:white;"></i></a>
+              </div>
+            </div>
+          </div>
+          <% }) %>
+      </div>
+
+    </div>
+
+    </div>
+
+  </section>
+  <%- include('../views/partials/footer'); %>
+
+</body>
+
+</html>

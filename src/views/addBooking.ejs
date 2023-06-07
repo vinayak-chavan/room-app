@@ -1,0 +1,92 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="/css/blogcss.css" />
+    
+    <%- include('../views/partials/links'); %>  
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+</head>
+
+<body>
+
+                <!-- header part -->
+                
+<nav class="navbar navbar-expand-lg bg-primary navbar-light">
+    <div class="container mt-1">
+        <h2 class="text-white">ROOMLY</h2>
+        <button class="navbar-toggler btn btn-secondary" type="button" data-toggle="collapse"
+            data-target="#collapsenavbar">
+            <span class="navbar-toggler-icon "></span>
+        </button>
+        <div class="collapse navbar-collapse text-center" id="collapsenavbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item px-2">
+                    <a href="/" class="nav-link text-white"> HOME </a>
+                </li>
+                <li class="nav-item px-2">
+                    <a href="/room" class="nav-link text-white"> ROOM </a>
+                </li>
+                <li class="nav-item px-2">
+                    <a href="/mybooking" class="nav-link text-white"> MY BOOKING </a>
+                </li>
+                <li class="nav-item px-2">
+                    <a href="/alladmin" class="nav-link text-white"> ADMINS </a>
+                </li>
+                <li class="nav-item px-2">
+                    <a href="/logout" class="nav-link text-white"> LOGOUT </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+                    <!-- page content -->          
+
+  <div class="container mt-5">
+            <div class="d-flex justify-content-center">
+                <form class="mt-1 col-md-6" id="addbus" action="/booking/<%= room._id %>" method="post">
+
+                    <div class="form-group">
+                        <label for="roomname">Room Name</label>
+                        <input type="text" class="form-control" value='<%= room.roomname %>' disabled>
+                    </div>
+      
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" class="form-control" name="date" id="date">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reason">Reason</label>
+                        <input type="text" class="form-control" id="reason" name="reason" placeholder="Reason">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="slot">Time Slot</label>
+                      <select name="timeSlot" class="form-control" id="timeSlot">
+                        <option value="12 AM - 2 AM">12 AM - 2 AM</option>
+                        <option value="2 AM - 4 AM">2 AM - 4 AM</option>
+                        <option value="4 AM - 6 AM">4 AM - 6 AM</option>
+                        <option value="6 AM - 8 AM">AM - 8 AM</option>
+                        <option value="8 AM - 10 AM">8 AM - 10 AM</option>
+                        <option value="10 AM - 12 PM">10 AM - 12 PM</option>
+                        <option value="12 PM - 2 PM">12 PM - 2 PM</option>
+                        <option value="2 PM - 4 PM">2 PM - 4 PM</option>
+                        <option value="4 PM - 6 PM">4 PM - 6 PM</option>
+                        <option value="6 PM - 8 PM">6 PM - 8 PM</option>
+                        <option value="8 PM - 10 PM">8 PM - 10 PM</option>
+                        <option value="10 PM - 12 AM">10 PM - 12 AM</option>
+                      </select>
+                    </div>
+
+                  <input type="submit" class="btn btn-danger btn-info mt-2" value="ADD">
+                  <button class="btn btn-danger mt-2 ml-2" ><a href="/room" class="text-light"> CANCEL </a></button>
+
+                </form>
+            </div>
+
+
+</body>
+
+</html>

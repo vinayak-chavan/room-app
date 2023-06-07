@@ -1,0 +1,100 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="/css/blogcss.css" />
+    
+    <%- include('../views/partials/links'); %>  
+   
+</head>
+
+<body>
+
+                <!-- header part -->
+
+<nav class="navbar navbar-expand-lg bg-primary navbar-light">
+  <div class="container mt-1">
+    <h2 class="text-white">ROOMLY</h2>
+    <button class="navbar-toggler btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapsenavbar">
+      <span class="navbar-toggler-icon "></span>
+    </button>
+    <div class="collapse navbar-collapse text-center" id="collapsenavbar">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item px-2">
+          <a href="/" class="nav-link text-white"> HOME </a>
+        </li>
+        <li class="nav-item px-2">
+          <a href="/room" class="nav-link text-white"> ROOM </a>
+        </li>
+        <li class="nav-item px-2">
+          <a href="/mybooking" class="nav-link text-white"> MY BOOKING </a>
+        </li>
+        <li class="nav-item px-2">
+          <a href="/alladmin" class="nav-link text-white"> ADMINS </a>
+        </li>
+        <li class="nav-item px-2">
+          <a href="/logout" class="nav-link text-white"> LOGOUT </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+                    <!-- page content -->
+                                        <!-- flash message -->
+                                        <% if(success !='' ){ %>
+                                        <div class="grow">
+                                        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                            <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                            </symbol>
+
+                                        </svg>
+                                        <div class="alert alert-success d-flex align-items-center" role="alert">
+                                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                                aria-label="Success:">
+                                                <use xlink:href="#check-circle-fill" />
+                                            </svg>
+                                            <div>
+                                                <%= success %>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                        <% } %>
+    
+
+              
+    <div class="main-wrapper mt-0">
+      <div class="container main-container">
+        <% buses.forEach(bus=> { %>
+        <div class="row main-row mt-4">
+          <div class="col-12 align-center">
+            <div class="row p-3">
+              <div class="col-8 align-middle"> 
+
+                <h5> <%= bus.busnumber %> </h5>            
+                  Type : <%= bus.busType %> <br>             
+                  Capacity : <%= bus.capacity %> <br>
+
+              </div>
+              <div class="col-2 mt-3">
+                <a href="/trip/<%= bus._id %>" class="btn btn-danger btn-block" >View Trips</a>
+              </div>
+              <div class="col-2 mt-3">
+              <a href="/trips/<%= bus._id %>" class="btn btn-danger" >Add Trip</a>
+              <button class="btn btn-danger ml-2"> <a href="/deletebus/<%= bus._id %>"><i class="fa fa-trash" style="font-size:22px; color:white;"></i></a></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+
+    <%- include('../views/partials/footer'); %>
+
+</body>
+
+</html>
