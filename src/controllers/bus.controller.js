@@ -23,14 +23,18 @@ const viewRooms = async (req, res) => {
 
 const addRoom = async (req, res) => {
   try {
-    const { roomname } = req.body.roomname;
+    const { roomname } = req.body;
+ 
     // check if bus allready registered or not
     const busData = await room.findOne({ roomname: roomname });
     if (busData) {
       return errorResponse(req, res, 'room allready registered', 400);
     };
 
-    const payload = req.body;
+    const payload = {
+    roomname: req.body.roomname,
+    photo: req.file.path,
+    };
 
     // insert bus payload in database
     const newbus = new room(payload);
@@ -39,6 +43,7 @@ const addRoom = async (req, res) => {
     res.redirect('/room');
     // return successResponse(req, res, insertBus, 200);
   } catch (error) {
+    console.log(error.message);
     return errorResponse(req, res, 'something went wrong', 500, { err: error });
   }
 };

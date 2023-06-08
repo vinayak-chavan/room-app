@@ -66,12 +66,14 @@
       <%= message %>
       <div class="row justify-content-center">
         <% buses.forEach(bus=> { %>
-          <div class="card mt-4">
-            <div class="card-body">
-              <p class="card-text h5 mb-4">
-                <i class="fa fa-home" style="font-size:22px; color:#007bff; padding-right: 8px;"></i>
-                <%= bus.roomname %>
-              </p>
+          <div class="card">
+          <img class="card-img-top" src="<%= bus.photo %>">
+          <div class="card-body">
+            <p class="card-title">
+              <h5><%= bus.roomname %> </h5>
+            </p>
+
+
              
               <div class="float-right">
                 <a href="/bookingpage/<%= bus._id %>" class="btn btn-primary ml-3">BOOK</a>

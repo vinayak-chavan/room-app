@@ -5,6 +5,11 @@ const roomSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true,
+  },
+  photo: {
+    type: String,
+    required: true,
+    trim: true,
   }
 });
 
