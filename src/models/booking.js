@@ -25,6 +25,11 @@ const bookingSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  status: {
+    type: String,
+    default: 'Pending',
+    trim: true,
+  }
 });
 
 const booking = new mongoose.model('booking', bookingSchema);

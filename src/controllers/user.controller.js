@@ -11,30 +11,36 @@ const login = async (req, res) => {
   try {
     const emailID = req.body.emailID;
     const password = req.body.password;
-
+    let message;
     // check for email exist or not
-    const userData = await user.findOne({ emailID: emailID });
+    const userData = await user.findOne({ emailID: emailID, isVerified: true });
     if (!userData) {
-      return errorResponse(req, res, "Invalid credentials!", 404);
+      message = 'Email id is not registered';
+      res.render("login", {message: message});
     }
-    
-    // check for the password
-    const isMatch = await bcrypt.compare(password, userData.password);
-    if (!isMatch) {
-      res.render("login");
+    else {
+      // check for the password
+      const isMatch = await bcrypt.compare(password, userData.password);
 
-      // return errorResponse(req, res, 'Invalid credentials!', 404);
-    } else {
-      // jwt token created
-      let accessToken = userData.getToken({
-        exp: 60 * 60,
-        secret: process.env.ACCESS_TOKEN_SECRET,
-      });
-      res.cookie("accessToken", accessToken);
-      await userData.save();
-      res.redirect('/alladmin');
+      if (!isMatch) {
+        message = 'Password is wrong';
+        res.render("login", {message: message});
+
+        // return errorResponse(req, res, 'Invalid credentials!', 404);
+      } else {
+        // jwt token created
+        let accessToken = userData.getToken({
+          exp: 60 * 60,
+          secret: process.env.ACCESS_TOKEN_SECRET,
+        });
+
+        res.cookie("accessToken", accessToken);
+        await userData.save();
+        res.redirect('/alladmin');
+      }
     }
   } catch (error) {
+    console.log('error-->', error.message);
     return errorResponse(req, res, "something went wrong!", 400, {
       err: error,
     });
@@ -42,13 +48,14 @@ const login = async (req, res) => {
 };
 
 const loginView = async (req, res) => {
-  res.render("login");
+  let message = '';
+  res.render("login", {message: message});
 };
 
 const logout = async (req, res) => {
   try {
     res.clearCookie("accessToken");
-    return res.redirect("/login");
+    return res.redirect(process.env.LINK);
   } catch (error) {
     return errorResponse(req, res, "Error while logging out", 500);
   }
@@ -60,8 +67,9 @@ const addAdminView = async (req, res) => {
 
 const viewAllAdmins = async (req, res) => {
   try {
+    const role = req.user.emailID;
     const userData = await user.find();
-    res.render("viewAdmins", { users: userData });
+    res.render("viewAdmins", { users: userData, role });
   } catch (error) {
     return errorResponse(req, res, 'something went wrong', 400, { err: error });
   }

@@ -1,0 +1,90 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="/css/blogcss.css" />
+    <style>
+        .full-width-img {
+            width: 10%;
+            height: 7%;
+            object-fit: cover;
+        }
+    </style>
+    <%- include('../views/partials/links'); %>
+
+</head>
+
+<body>
+
+    <!-- header part -->
+
+    <nav class="navbar navbar-expand-lg bg-primary navbar-light">
+        <div class="container mt-1">
+            <img class="img-fluid full-width-img" src="img/logo.jpg">
+            <h3 class="text-white ml-2">PPG GROUP OF INSTITUTIONS</h3>
+            <button class="navbar-toggler btn btn-secondary" type="button" data-toggle="collapse"
+                data-target="#collapsenavbar">
+                <span class="navbar-toggler-icon "></span>
+            </button>
+            <div class="collapse navbar-collapse text-center" id="collapsenavbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item px-2">
+                        <a href="/schedule" class="nav-link text-white"> HOME </a>
+                    </li>
+                    <li class="nav-item px-2">
+                        <a href="/room" class="nav-link text-white"> HALL </a>
+                    </li>
+                    <li class="nav-item px-2">
+                        <a href="/galleryview" class="nav-link text-white"> GALLERY </a>
+                    </li>
+                    <li class="nav-item px-2">
+                        <a href="/mybooking" class="nav-link text-white"> MY BOOKING </a>
+                    </li>
+                    <li class="nav-item px-2">
+                        <a href="/alladmin" class="nav-link text-white"> ADMINS </a>
+                    </li>
+                    <li class="nav-item px-2">
+                        <a href="/logout" class="nav-link text-white"> LOGOUT </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- page content -->
+
+    <div class="container mt-5">
+        <h2 class="text-center">Add Image In Gallery</h2>
+        <div class="d-flex justify-content-center">
+            <form class="mt-5 col-md-6" id="addbus" action="/gallery" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="roomname">Title</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Title" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Image</label>
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="photo" id="photo"
+                                accept=".png, .jpg, .jpeg">
+                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group"></div>
+                <input type="submit" class="btn btn-primary btn-info mt-2" value="ADD">
+                <button class="btn btn-danger mt-2 ml-2"><a href="/room" class="text-light"> CANCEL </a></button>
+
+        </div>
+        </form>
+    </div>
+
+
+    <%- include('../views/partials/footer'); %>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+
+</body>
+
+</html>

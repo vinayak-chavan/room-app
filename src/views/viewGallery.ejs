@@ -1,0 +1,93 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="/css/blogcss.css" />
+  <style>
+    .full-width-img {
+      width: 10%;
+      height: 7%;
+      object-fit: cover;
+    }
+  </style>
+  <%- include('../views/partials/links'); %>
+
+</head>
+
+<body>
+
+  <!-- header part -->
+
+  <nav class="navbar navbar-expand-lg bg-primary navbar-light">
+    <div class="container mt-1">
+      <img class="img-fluid full-width-img" src="img/logo.jpg">
+      <h3 class="text-white ml-2">PPG GROUP OF INSTITUTIONS</h3>
+      <button class="navbar-toggler btn btn-secondary" type="button" data-toggle="collapse"
+        data-target="#collapsenavbar">
+        <span class="navbar-toggler-icon "></span>
+      </button>
+      <div class="collapse navbar-collapse text-center" id="collapsenavbar">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item px-2">
+            <a href="/schedule" class="nav-link text-white"> HOME </a>
+          </li>
+          <li class="nav-item px-2">
+            <a href="/room" class="nav-link text-white"> HALL </a>
+          </li>
+          <li class="nav-item px-2">
+            <a href="/galleryview" class="nav-link text-white"> GALLERY </a>
+          </li>
+          <li class="nav-item px-2">
+            <a href="/mybooking" class="nav-link text-white"> MY BOOKING </a>
+          </li>
+          <li class="nav-item px-2">
+            <a href="/alladmin" class="nav-link text-white"> ADMINS </a>
+          </li>
+          <li class="nav-item px-2">
+            <a href="/logout" class="nav-link text-white"> LOGOUT </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+          <nav class="navbar navbar-expand-lg bg-white mt-3">
+            <div class="container">
+          
+              <div class="collapse navbar-collapse text-center" id="collapsenavbar">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item px-4">
+                    <button type="button" class="btn btn-secondary p-0"><a href="/gallery" class="nav-link text-white"> Add
+                        Photo </a></button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+  <!-- page content -->
+  <div class="container">
+      <div class="row justify-content-center mt-2">
+        <% photos.forEach(ele=> { %>
+          <div class="card">
+            <img class="card-img-top" src="<%= ele.photo %>">
+            <div class="card-body">
+              <p class="card-title">
+              <h5>
+                <%= ele.title %>
+              </h5>
+              </p>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+  </div>
+
+
+  <%- include('../views/partials/footer'); %>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+
+</body>
+
+</html>

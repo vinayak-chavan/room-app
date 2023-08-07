@@ -3,31 +3,44 @@
 <head>
   <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/css/blogcss.css" />
+    <script>
+      function disableSubmitButton() {
+        alert('Sorry!! Time slot is allready booked.');
+      }
+    </script>
+  <style>
+    .full-width-img {
+      width: 10%;
+      height: 7%;
+      object-fit: cover;
+    }
+  </style>
   <%- include('../views/partials/links'); %>
-      <script>
-        function disableSubmitButton() {
-          alert('Sorry!! Time slot is allready booked.');
-        }
-      </script>
+
 </head>
 
 <body>
 
   <!-- header part -->
 
-<nav class="navbar navbar-expand-lg bg-primary navbar-light">
-  <div class="container mt-1">
-    <h3 class="text-white">PPG GROUP OF INSTITUTIONS</h3>
+  <nav class="navbar navbar-expand-lg bg-primary navbar-light">
+    <div class="container mt-1">
+      <img class="img-fluid full-width-img" src="img/logo.jpg">
+      <h3 class="text-white ml-2">PPG GROUP OF INSTITUTIONS</h3>
+
     <button class="navbar-toggler btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapsenavbar">
       <span class="navbar-toggler-icon "></span>
     </button>
     <div class="collapse navbar-collapse text-center" id="collapsenavbar">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item px-2">
-          <a href="/" class="nav-link text-white"> HOME </a>
+          <a href="/schedule" class="nav-link text-white"> HOME </a>
         </li>
         <li class="nav-item px-2">
           <a href="/room" class="nav-link text-white"> HALL </a>
+        </li>
+        <li class="nav-item px-2">
+          <a href="/galleryview" class="nav-link text-white"> GALLERY </a>
         </li>
         <li class="nav-item px-2">
           <a href="/mybooking" class="nav-link text-white"> MY BOOKING </a>
@@ -72,13 +85,12 @@
             <p class="card-title">
               <h5><%= bus.roomname %> </h5>
             </p>
-
-
-             
               <div class="float-right">
                 <a href="/bookingpage/<%= bus._id %>" class="btn btn-primary ml-3">BOOK</a>
+                <% if(role==='hallscheduling.ppg@gmail.com' ) { %>
                 <a href="/room/<%= bus._id %>" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"
                     style="font-size:22px; color:white;"></i></a>
+                <% } %>
               </div>
             </div>
           </div>

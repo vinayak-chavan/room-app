@@ -19,7 +19,7 @@
 
 <nav class="navbar navbar-expand-lg bg-primary navbar-light">
   <div class="container mt-1">
-    <img class="img-fluid full-width-img" src="https://i.ibb.co/RBFk17n/logo.jpg">
+    <img class="img-fluid full-width-img" src="img/logo.jpg">
     <h3 class="text-white ml-2">PPG GROUP OF INSTITUTIONS</h3>
     <button class="navbar-toggler btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapsenavbar">
       <span class="navbar-toggler-icon "></span>
@@ -27,7 +27,22 @@
     <div class="collapse navbar-collapse text-center" id="collapsenavbar">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item px-2">
-          <a href="/login" class="nav-link text-white"> LOGIN </a>
+          <a href="/schedule" class="nav-link text-white"> HOME </a>
+        </li>
+        <li class="nav-item px-2">
+          <a href="/room" class="nav-link text-white"> HALL </a>
+        </li>
+        <li class="nav-item px-2">
+          <a href="/galleryview" class="nav-link text-white"> GALLERY </a>
+        </li>
+        <li class="nav-item px-2">
+          <a href="/mybooking" class="nav-link text-white"> MY BOOKING </a>
+        </li>
+        <li class="nav-item px-2">
+          <a href="/alladmin" class="nav-link text-white"> ADMINS </a>
+        </li>
+        <li class="nav-item px-2">
+          <a href="/logout" class="nav-link text-white"> LOGOUT </a>
         </li>
       </ul>
     </div>
@@ -42,7 +57,7 @@
 
 <div class="container mt-5">
   <div class="d-flex justify-content-center">
-    <form class="mt-1 col-md-6" id="addbus" action="/date" method="post">
+    <form class="mt-1 col-md-6" id="addbus" action="/bydate" method="post">
 
       <div class="form-group">
         <label for="Date">Date</label>

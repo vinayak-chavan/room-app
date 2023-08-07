@@ -100,6 +100,10 @@ const addBookingView = async (req, res) => {
 
 const fetchAllData = async (req, res) => {
   try {
+    let role = req.user?.emailID;
+    console.log(role);
+    if(role === undefined)
+      role = 'ppg';
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     const bookingData = await booking.find({date: { $gte: today, $lt: new Date(today.getTime() + 24 * 60 * 60 * 1000) } })
@@ -109,8 +113,26 @@ const fetchAllData = async (req, res) => {
     bookingData.sort(function(a, b) {
     return a.roomId.roomname.localeCompare(b.roomId.roomname);
     });
+    res.render("allBookingsMain", { bookings: bookingData, today: 'Today', role });
+  } catch (error) {
+    console.log('err-->', error.message);
+    return errorResponse(req, res, "something went wrong", 400, { err: error });
+  }
+};
 
-    res.render("allBookings", { bookings: bookingData });
+const fetchAll = async (req, res) => {
+  try {
+    let role = 'ppg';
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const bookingData = await booking.find({date: { $gte: today, $lt: new Date(today.getTime() + 24 * 60 * 60 * 1000) } })
+      .populate("userId")
+      .populate("roomId");
+
+    bookingData.sort(function(a, b) {
+    return a.roomId.roomname.localeCompare(b.roomId.roomname);
+    });
+    res.render("allBookings", { bookings: bookingData, today: 'Today', role });
   } catch (error) {
     console.log('err-->', error.message);
     return errorResponse(req, res, "something went wrong", 400, { err: error });
@@ -119,8 +141,10 @@ const fetchAllData = async (req, res) => {
 
 const bookingDetails = async (req, res) => {
   try {
+    let role = req.user.emailID;
+    console.log('role-->', role);
+    
     const today = req.body.date;
-    // today.setHours(0, 0, 0, 0);
     const bookingData = await booking.find({date: today })
       .populate("userId")
       .populate("roomId");
@@ -128,7 +152,68 @@ const bookingDetails = async (req, res) => {
     bookingData.sort(function(a, b) {
     return a.roomId.roomname.localeCompare(b.roomId.roomname);
     });
-    res.render("allBookings", { bookings: bookingData });
+    res.render("allBookings", { bookings: bookingData, today, role });
+  } catch (error) {
+    console.log('err-->', error.message);
+    return errorResponse(req, res, "something went wrong", 400, { err: error });
+  }
+};
+
+const bookingDetail = async (req, res) => {
+  try {
+    let role = 'ppg';
+    const today = req.body.date;
+    const bookingData = await booking.find({date: today })
+      .populate("userId")
+      .populate("roomId");
+
+    bookingData.sort(function(a, b) {
+    return a.roomId.roomname.localeCompare(b.roomId.roomname);
+    });
+    res.render("allBookings", { bookings: bookingData, today, role });
+  } catch (error) {
+    console.log('err-->', error.message);
+    return errorResponse(req, res, "something went wrong", 400, { err: error });
+  }
+};
+
+const updateBooking = async (req, res) => {
+  try {
+    let id = req.params.id;
+    console.log(id);
+    let role = req.user?.emailID;
+    console.log(role);
+    let status;
+    let bookingData = await booking.findOne({_id: id});
+    console.log(bookingData)
+    if (bookingData.status === 'Pending') {
+      status = 'Accepted'
+    } if (bookingData.status === 'Accepted') {
+      status = 'Canceled'
+    } 
+
+    let bookingDetails = await booking.findByIdAndUpdate({_id: id}, {status: status});
+
+    const today = bookingData.date;
+    const details = await booking.find({date: today })
+      .populate("userId")
+      .populate("roomId");
+
+    details.sort(function(a, b) {
+    return a.roomId.roomname.localeCompare(b.roomId.roomname);
+    });
+    console.log()
+    res.render("allBookings", { bookings: details, today, role });
+
+    // const today = req.body.date;
+    // const bookingData = await booking.find({date: today })
+    //   .populate("userId")
+    //   .populate("roomId");
+
+    // bookingData.sort(function(a, b) {
+    // return a.roomId.roomname.localeCompare(b.roomId.roomname);
+    // });
+    // res.render("allBookings", { bookings: details, today, role });
   } catch (error) {
     console.log('err-->', error.message);
     return errorResponse(req, res, "something went wrong", 400, { err: error });
@@ -140,6 +225,9 @@ module.exports = {
   cancelBooking,
   viewBookingByUser,
   fetchAllData,
+  fetchAll,
   addBookingView,
   bookingDetails,
+  updateBooking,
+  bookingDetail,
 };

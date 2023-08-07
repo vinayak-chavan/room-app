@@ -1,29 +1,39 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="/css/blogcss.css" />
-    
-    <%- include('../views/partials/links'); %>  
-   
+  <link rel="stylesheet" href="/css/blogcss.css" />
+  <style>
+    .full-width-img {
+      width: 10%;
+      height: 7%;
+      object-fit: cover;
+    }
+  </style>
+  <%- include('../views/partials/links'); %>
+
 </head>
 
 <body>
 
-                <!-- header part -->
+  <!-- header part -->
 
-<nav class="navbar navbar-expand-lg bg-primary navbar-light">
-  <div class="container mt-1">
-    <h3 class="text-white">PPG GROUP OF INSTITUTIONS</h3>
+  <nav class="navbar navbar-expand-lg bg-primary navbar-light">
+    <div class="container mt-1">
+      <img class="img-fluid full-width-img" src="img/logo.jpg">
+      <h3 class="text-white ml-2">PPG GROUP OF INSTITUTIONS</h3>
     <button class="navbar-toggler btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapsenavbar">
       <span class="navbar-toggler-icon "></span>
     </button>
     <div class="collapse navbar-collapse text-center" id="collapsenavbar">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item px-2">
-          <a href="/" class="nav-link text-white"> HOME </a>
+          <a href="/schedule" class="nav-link text-white"> HOME </a>
         </li>
         <li class="nav-item px-2">
           <a href="/room" class="nav-link text-white"> HALL </a>
+        </li>
+        <li class="nav-item px-2">
+          <a href="/galleryview" class="nav-link text-white"> GALLERY </a>
         </li>
         <li class="nav-item px-2">
           <a href="/mybooking" class="nav-link text-white"> MY BOOKING </a>
@@ -38,7 +48,6 @@
     </div>
   </div>
 </nav>
-
 
                     <!-- page content -->
 
