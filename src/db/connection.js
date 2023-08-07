@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-// let url = "mongodb+srv://hallschedulingppg:hallschedulingppg@cluster0.gfrbv1m.mongodb.net/";
-let url = "mongodb://localhost:27017/room-booking-app?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false";
+let url = "mongodb+srv://hallschedulingppg:hallschedulingppg@cluster0.gfrbv1m.mongodb.net/";
+// let url = "mongodb://localhost:27017/room-booking-app?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false";
 // let url = 'mongodb+srv://room:room@cluster0.xyk4vms.mongodb.net/';
 
 (async () => {
